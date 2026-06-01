@@ -1,0 +1,39 @@
+{
+  "5": {
+    "name": "Beginner Collector",
+    "description": "Caught 5 unique fish species",
+    "stats": {"hp": 10}
+  },
+  "10": {
+    "name": "Novice Fisherman",
+    "description": "Caught 10 unique fish species",
+    "stats": {"hp": 20, "atk": 5}
+  },
+  "15": {
+    "name": "Skilled Angler",
+    "description": "Caught 15 unique fish species",
+    "stats": {"hp": 30, "atk": 8, "def": 3}
+  },
+  "20": {
+    "name": "Master Fisher",
+    "description": "Caught 20 unique fish species",
+    "stats": {"hp": 50, "atk": 12, "def": 6, "agi": 2}
+  },
+  "30": {
+    "name": "Legendary Collector",
+    "description": "Caught 30 unique fish species",
+    "stats": {"hp": 75, "atk": 18, "def": 10, "agi": 4}
+  },
+  "40": {
+    "name": "Ocean's Champion",
+    "description": "Caught 40 unique fish species",
+    "stats": {"hp": 100, "atk": 25, "def": 15, "agi": 6}
+  },
+  "50": {
+    "name": "Mythical Fisherman",
+    "description": "Caught all 50 unique fish species!",
+    "stats": {"hp": 150, "atk": 35, "def": 20, "agi": 10},
+    "special_item": "legendary_fishing_rod",
+    "title": "Keeper of the Seas"
+  }
+}

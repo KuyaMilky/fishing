@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxxx1"]
+
+[ext_resource type="Script" path="res://scripts/core/game_manager.gd"]
+
+[node name="Main" type="Node"]
+script = SubResource("GDScript_mgr")
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="StartScreen" type="Control" parent="UI"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/StartScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+alignment = 1
+
+[node name="Title" type="Label" parent="UI/StartScreen/VBoxContainer"]
+text = "RPG: Fishing & Mining"
+
+[node name="NameInput" type="LineEdit" parent="UI/StartScreen/VBoxContainer"]
+placeholder_text = "Enter character name"
+
+[node name="StartButton" type="Button" parent="UI/StartScreen/VBoxContainer"]
+text = "Start Game"
+
+[node name="World" type="Node2D"]
+visible = false
+
+[node name="TileMap" type="TileMap" parent="World"]
+
+[node name="Character" type="CharacterBody2D" parent="World"]
+position = Vector2(256, 256)
+
+[node name="Sprite" type="Sprite2D" parent="World/Character"]
+
+[node name="Equipment" type="Node" parent="World/Character"]
+
+[node name="HUD" type="CanvasLayer" parent="World"]
+
+[node name="StatsPanel" type="PanelContainer" parent="World/HUD"]
+offset_right = 200.0
+offset_bottom = 120.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="World/HUD/StatsPanel"]
+
+[node name="NameLabel" type="Label" parent="World/HUD/StatsPanel/VBoxContainer"]
+text = "Character: "
+
+[node name="LevelLabel" type="Label" parent="World/HUD/StatsPanel/VBoxContainer"]
+text = "Level: 1"
+
+[node name="HealthLabel" type="Label" parent="World/HUD/StatsPanel/VBoxContainer"]
+text = "Health: 100/100"
+
+[node name="ExpLabel" type="Label" parent="World/HUD/StatsPanel/VBoxContainer"]
+text = "EXP: 0/100"
+
+[node name="CurrencyLabel" type="Label" parent="World/HUD/StatsPanel/VBoxContainer"]
+text = "Gold: 0"

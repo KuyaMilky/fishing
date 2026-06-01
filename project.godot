@@ -1,0 +1,21 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that change here are too many and some can be missed.
+;
+; To use the "Run" button in the editor, rename this file to "project.godot".
+
+config_version=5
+
+[application]
+
+config/name="Godot RPG - Fishing & Mining"
+config/version="0.1.0"
+config/icon="res://assets/icon.svg"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
+
+[physics]
+
+2d/default_gravity=0

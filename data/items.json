@@ -1,0 +1,115 @@
+{
+  "copper_ore": {
+    "id": "copper_ore",
+    "name": "Copper Ore",
+    "type": "ore",
+    "rarity": "common",
+    "value": 10,
+    "stats": {}
+  },
+  "iron_ore": {
+    "id": "iron_ore",
+    "name": "Iron Ore",
+    "type": "ore",
+    "rarity": "common",
+    "value": 20,
+    "stats": {}
+  },
+  "gold_ore": {
+    "id": "gold_ore",
+    "name": "Gold Ore",
+    "type": "ore",
+    "rarity": "uncommon",
+    "value": 50,
+    "stats": {}
+  },
+  "mithril_ore": {
+    "id": "mithril_ore",
+    "name": "Mithril Ore",
+    "type": "ore",
+    "rarity": "rare",
+    "value": 150,
+    "stats": {}
+  },
+  "copper_sword": {
+    "id": "copper_sword",
+    "name": "Copper Sword",
+    "type": "gear",
+    "rarity": "common",
+    "value": 25,
+    "stats": {"atk": 3}
+  },
+  "iron_sword": {
+    "id": "iron_sword",
+    "name": "Iron Sword",
+    "type": "gear",
+    "rarity": "uncommon",
+    "value": 60,
+    "stats": {"atk": 7}
+  },
+  "gold_sword": {
+    "id": "gold_sword",
+    "name": "Gold Sword",
+    "type": "gear",
+    "rarity": "rare",
+    "value": 200,
+    "stats": {"atk": 12}
+  },
+  "mithril_sword": {
+    "id": "mithril_sword",
+    "name": "Mithril Sword",
+    "type": "gear",
+    "rarity": "epic",
+    "value": 500,
+    "stats": {"atk": 20, "agi": 2}
+  },
+  "legendary_sword": {
+    "id": "legendary_sword",
+    "name": "Legendary Excalibur",
+    "type": "gear",
+    "rarity": "legendary",
+    "value": 1500,
+    "stats": {"atk": 35, "def": 5}
+  },
+  "mythic_sword": {
+    "id": "mythic_sword",
+    "name": "Mythic Blade of Eternity",
+    "type": "gear",
+    "rarity": "mythic",
+    "value": 5000,
+    "stats": {"atk": 50, "def": 10, "agi": 5, "hp": 50}
+  },
+  "flame_skill": {
+    "id": "flame_skill",
+    "name": "Fireball",
+    "type": "skill_book",
+    "rarity": "uncommon",
+    "value": 100,
+    "element": "fire",
+    "cooldown": 5,
+    "description": "Hurl a fireball at enemies. +3 ATK",
+    "stats": {"atk": 3}
+  },
+  "frost_skill": {
+    "id": "frost_skill",
+    "name": "Frostbolt",
+    "type": "skill_book",
+    "rarity": "uncommon",
+    "value": 100,
+    "element": "frost",
+    "cooldown": 5,
+    "description": "Launch ice bolts to slow enemies. +2 DEF",
+    "stats": {"def": 2}
+  },
+  "lightning_skill": {
+    "id": "lightning_skill",
+    "name": "Lightning Bolt",
+    "type": "skill_book",
+    "rarity": "rare",
+    "value": 250,
+    "element": "lightning",
+    "cooldown": 6,
+    "description": "Strike with lightning for massive damage. +5 ATK, +3 AGI",
+    "stats": {"atk": 5, "agi": 3}
+  }
+}

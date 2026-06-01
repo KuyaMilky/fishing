@@ -1,0 +1,20 @@
+# Godot-specific ignores
+.godot/
+*.exe
+*.exe.console
+*.gd.rpc_funcs.cfg
+
+# User-specific files
+user://
+*.tres~
+
+# Editor
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.directory
+Thumbs.db
