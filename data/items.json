@@ -7,6 +7,22 @@
     "value": 1,
     "stats": {}
   },
+  "tin_ore": {
+    "id": "tin_ore",
+    "name": "Tin Ore",
+    "type": "ore",
+    "rarity": "common",
+    "value": 2,
+    "stats": {}
+  },
+  "iron_ore": {
+    "id": "iron_ore",
+    "name": "Iron Ore",
+    "type": "ore",
+    "rarity": "common",
+    "value": 3,
+    "stats": {}
+  },
   "silver_ore": {
     "id": "silver_ore",
     "name": "Silver Ore",
@@ -20,23 +36,119 @@
     "name": "Gold Ore",
     "type": "ore",
     "rarity": "rare",
+    "value": 50,
+    "stats": {}
+  },
+  "mithril_ore": {
+    "id": "mithril_ore",
+    "name": "Mithril Ore",
+    "type": "ore",
+    "rarity": "epic",
+    "value": 200,
+    "stats": {}
+  },
+  "adamantite_ore": {
+    "id": "adamantite_ore",
+    "name": "Adamantite Ore",
+    "type": "ore",
+    "rarity": "legendary",
+    "value": 500,
+    "stats": {"atk": 5}
+  },
+  "diamond": {
+    "id": "diamond",
+    "name": "Diamond",
+    "type": "gem",
+    "rarity": "rare",
     "value": 100,
     "stats": {}
   },
-  "diamond_ore": {
-    "id": "diamond_ore",
-    "name": "Diamond",
-    "type": "ore",
-    "rarity": "legendary",
-    "value": 1000,
-    "stats": {"atk": 5}
-  },
-  "iron_sword": {
-    "id": "iron_sword",
-    "name": "Iron Sword",
-    "type": "gear",
-    "rarity": "common",
-    "value": 50,
+  "ruby": {
+    "id": "ruby",
+    "name": "Ruby",
+    "type": "gem",
+    "rarity": "epic",
+    "value": 250,
     "stats": {"atk": 3}
+  },
+  "sapphire": {
+    "id": "sapphire",
+    "name": "Sapphire",
+    "type": "gem",
+    "rarity": "epic",
+    "value": 250,
+    "stats": {"def": 3}
+  },
+  "emerald": {
+    "id": "emerald",
+    "name": "Emerald",
+    "type": "gem",
+    "rarity": "epic",
+    "value": 240,
+    "stats": {"agi": 2}
+  },
+  "obsidian": {
+    "id": "obsidian",
+    "name": "Obsidian",
+    "type": "gem",
+    "rarity": "rare",
+    "value": 80,
+    "stats": {}
+  },
+  "moonstone": {
+    "id": "moonstone",
+    "name": "Moonstone",
+    "type": "gem",
+    "rarity": "uncommon",
+    "value": 30,
+    "stats": {}
+  },
+  "sunstone": {
+    "id": "sunstone",
+    "name": "Sunstone",
+    "type": "gem",
+    "rarity": "uncommon",
+    "value": 35,
+    "stats": {}
+  },
+  "amethyst": {
+    "id": "amethyst",
+    "name": "Amethyst",
+    "type": "gem",
+    "rarity": "uncommon",
+    "value": 25,
+    "stats": {}
+  },
+  "opal": {
+    "id": "opal",
+    "name": "Opal",
+    "type": "gem",
+    "rarity": "rare",
+    "value": 120,
+    "stats": {}
+  },
+  "jade": {
+    "id": "jade",
+    "name": "Jade",
+    "type": "gem",
+    "rarity": "uncommon",
+    "value": 40,
+    "stats": {}
+  },
+  "aquamarine": {
+    "id": "aquamarine",
+    "name": "Aquamarine",
+    "type": "gem",
+    "rarity": "rare",
+    "value": 110,
+    "stats": {}
+  },
+  "celestial_crystal": {
+    "id": "celestial_crystal",
+    "name": "Celestial Crystal",
+    "type": "gem",
+    "rarity": "mythic",
+    "value": 5000,
+    "stats": {"atk": 10, "def": 10, "agi": 5, "max_hp": 50}
   }
 }
