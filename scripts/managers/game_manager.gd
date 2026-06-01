@@ -1,85 +1,103 @@
 extends Node
 
-# Autoload for managing game state
+# Main game manager - handles game state and auto-play
 
-var current_player: Dictionary = {}
-var is_in_arena: bool = false
-var arena_schedule = {
-	"start_times": [10, 20],  # 10 AM and 8 PM (20:00)
-	"duration": 3600  # 1 hour
-}
+var current_character: Dictionary = {}
+var is_mining: bool = false
+var is_fishing: bool = false
+var mining_timer: float = 0.0
+var fishing_timer: float = 0.0
+var auto_play_speed: float = 1.0  # Can be adjusted for difficulty
 
 func _ready():
 	set_process(true)
+	current_character = CharacterManager.create_default_character()
+	GameManager.save_character(current_character)
 
 func _process(delta):
-	var current_hour = Time.get_ticks_msec() / 1000 / 3600 % 24
-	if current_hour in arena_schedule["start_times"]:
-		if not is_in_arena:
-			notify_arena_start()
-			is_in_arena = true
-	else:
-		is_in_arena = false
+	if is_mining:
+		mining_timer += delta * auto_play_speed
+		if mining_timer >= 3.0:  # Mine every 3 seconds
+			_perform_mine()
+			mining_timer = 0.0
+	
+	if is_fishing:
+		fishing_timer += delta * auto_play_speed
+		if fishing_timer >= 5.0:  # Fish every 5 seconds
+			_perform_fish()
+			fishing_timer = 0.0
 
-func create_player(name: String) -> Dictionary:
-	return {
-		"name": name,
-		"level": 1,
-		"exp": 0,
-		"exp_to_level": 100,
-		"hp": 100,
-		"max_hp": 100,
-		"atk": 10,
-		"def": 5,
-		"agi": 8,
-		"stat_points": 0,
-		"gold": 0,
-		"silver": 0,
-		"copper": 0,
-		"arena_points": 0,
-		"inventory": [],
-		"equipment": {
-			"headgear": "",
-			"earrings": "",
-			"necklace": "",
-			"ring": "",
-			"bracelet": "",
-			"upper_armor": "",
-			"lower_armor": "",
-			"gloves": "",
-			"boots": "",
-			"weapon": ""
-		},
-		"skills": [],
-		"collected_fish": [],
-		"created_at": Time.get_ticks_msec()
-	}
+func toggle_mining():
+	is_mining = !is_mining
+	print("Mining: %s" % ("ON" if is_mining else "OFF"))
 
-func save_player(player: Dictionary):
-	var save_path = "user://players/%s.json" % player["name"]
-	var dir = DirAccess.open("user://")
-	if not dir.dir_exists("players"):
-		dir.make_dir("players")
-	var json_str = JSON.stringify(player)
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	if file:
-		file.store_string(json_str)
-		print("Player saved: %s" % save_path)
+func toggle_fishing():
+	is_fishing = !is_fishing
+	print("Fishing: %s" % ("ON" if is_fishing else "OFF"))
 
-func load_player(name: String) -> Dictionary:
-	var save_path = "user://players/%s.json" % name
-	if ResourceLoader.exists(save_path):
-		var file = FileAccess.open(save_path, FileAccess.READ)
-		if file:
-			var json_str = file.get_as_text()
-			var data = JSON.parse_string(json_str)
-			if data:
-				print("Player loaded: %s" % name)
-				return data
+func _perform_mine():
+	var ore = _roll_ore()
+	if ore:
+		current_character["inventory"].append({"id": ore["id"], "quantity": 1})
+		current_character["gold"] += ore.get("value", 1)
+		print("⛏️ Mined: %s" % ore["name"])
+
+func _perform_fish():
+	var fish = _roll_fish()
+	if fish:
+		var found = false
+		for inv_item in current_character["inventory"]:
+			if inv_item["id"] == fish["id"]:
+				inv_item["quantity"] += 1
+				found = true
+				break
+		
+		if not found:
+			current_character["inventory"].append({"id": fish["id"], "quantity": 1})
+		
+		if not fish["id"] in current_character["collected_fish"]:
+			current_character["collected_fish"].append(fish["id"])
+			print("🎣 NEW CATCH: %s (%s)" % [fish["name"], fish["rarity"]])
+		else:
+			print("🎣 Caught: %s" % fish["name"])
+
+func _roll_ore() -> Dictionary:
+	var ores = ItemDatabase.items.values().filter(func(x): return x.get("type") == "ore")
+	if ores.size() > 0:
+		return ores[randi() % ores.size()]
 	return {}
 
-func notify_arena_start():
-	print("ARENA IS NOW OPEN!")
-	if has_node("/root/Main/UI/ArenaNotification"):
-		var notif = get_node("/root/Main/UI/ArenaNotification")
-		notif.show()
+func _roll_fish() -> Dictionary:
+	var fish_list = ItemDatabase.fish_species
+	var rarity = _roll_rarity()
+	var candidates = fish_list.filter(func(x): return x.get("rarity") == rarity)
+	if candidates.size() > 0:
+		return candidates[randi() % candidates.size()]
+	return {}
+
+func _roll_rarity() -> String:
+	var weights = {
+		"common": 0.60,
+		"uncommon": 0.25,
+		"rare": 0.10,
+		"epic": 0.04,
+		"legendary": 0.0005,
+		"mythic": 0.00005
+	}
+	var roll = randf()
+	var cumulative = 0.0
+	for rarity in ["common", "uncommon", "rare", "epic", "legendary", "mythic"]:
+		cumulative += weights.get(rarity, 0.0)
+		if roll <= cumulative:
+			return rarity
+	return "common"
+
+func save_character(player: Dictionary):
+	var save_path = "user://characters/%s.json" % player["name"]
+	var dir = DirAccess.open("user://")
+	if not dir.dir_exists("characters"):
+		dir.make_dir("characters")
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(player))
+		print("Character saved: %s" % save_path)

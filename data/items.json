@@ -4,7 +4,7 @@
     "name": "Copper Ore",
     "type": "ore",
     "rarity": "common",
-    "value": 10,
+    "value": 1,
     "stats": {}
   },
   "silver_ore": {
@@ -12,7 +12,7 @@
     "name": "Silver Ore",
     "type": "ore",
     "rarity": "uncommon",
-    "value": 30,
+    "value": 10,
     "stats": {}
   },
   "gold_ore": {
@@ -20,7 +20,23 @@
     "name": "Gold Ore",
     "type": "ore",
     "rarity": "rare",
-    "value": 75,
+    "value": 100,
     "stats": {}
+  },
+  "diamond_ore": {
+    "id": "diamond_ore",
+    "name": "Diamond",
+    "type": "ore",
+    "rarity": "legendary",
+    "value": 1000,
+    "stats": {"atk": 5}
+  },
+  "iron_sword": {
+    "id": "iron_sword",
+    "name": "Iron Sword",
+    "type": "gear",
+    "rarity": "common",
+    "value": 50,
+    "stats": {"atk": 3}
   }
 }

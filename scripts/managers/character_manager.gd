@@ -1,96 +1,78 @@
 extends Node
 
-# Character manager for equipment and stats
+# Character manager - handles character creation, equipment, stats
 
-func apply_equipment_stats(player: Dictionary, equipment_id: String, slot: String) -> Dictionary:
-	var gear = ItemDatabase.get_gear(equipment_id)
-	if gear.is_empty():
-		return player
+func create_default_character() -> Dictionary:
+	return {
+		"name": "Hero",
+		"level": 1,
+		"exp": 0,
+		"exp_to_level": 100,
+		"hp": 100,
+		"max_hp": 100,
+		"atk": 10,
+		"def": 5,
+		"agi": 8,
+		"stat_points": 0,
+		"gold": 0,
+		"silver": 0,
+		"copper": 0,
+		"inventory": [],
+		"equipment": {
+			"pickaxe": "",
+			"fishing_rod": "",
+			"weapon": "",
+			"offhand": "",
+			"headgear": "",
+			"earring": "",
+			"necklace": "",
+			"ring": "",
+			"bracelet": "",
+			"upper_armor": "",
+			"lower_armor": "",
+			"gloves": "",
+			"boots": ""
+		},
+		"skills": [],
+		"collected_fish": []
+	}
+
+func equip_item(character: Dictionary, slot: String, item_id: String) -> Dictionary:
+	var item = ItemDatabase.get_item(item_id)
+	if item.is_empty():
+		return character
 	
 	# Remove old equipment stats
-	if player["equipment"][slot]:
-		var old_gear = ItemDatabase.get_gear(player["equipment"][slot])
-		if not old_gear.is_empty() and old_gear.has("stats"):
-			for stat in old_gear["stats"]:
-				if stat in player:
-					player[stat] -= old_gear["stats"][stat]
+	if character["equipment"][slot]:
+		var old_item = ItemDatabase.get_item(character["equipment"][slot])
+		if old_item.has("stats"):
+			for stat in old_item["stats"]:
+				if stat in character:
+					character[stat] -= old_item["stats"][stat]
 	
 	# Apply new equipment stats
-	if gear.has("stats"):
-		for stat in gear["stats"]:
-			if stat in player:
-				player[stat] += gear["stats"][stat]
+	if item.has("stats"):
+		for stat in item["stats"]:
+			if stat in character:
+				character[stat] += item["stats"][stat]
 	
-	player["equipment"][slot] = equipment_id
-	return player
+	character["equipment"][slot] = item_id
+	return character
 
-func remove_equipment(player: Dictionary, slot: String) -> Dictionary:
-	if player["equipment"][slot]:
-		var old_gear = ItemDatabase.get_gear(player["equipment"][slot])
-		if not old_gear.is_empty() and old_gear.has("stats"):
-			for stat in old_gear["stats"]:
-				if stat in player:
-					player[stat] -= old_gear["stats"][stat]
+func allocate_stat_point(character: Dictionary, stat: String, amount: int = 1) -> Dictionary:
+	if character["stat_points"] < amount:
+		return character
 	
-	player["equipment"][slot] = ""
-	return player
-
-func add_exp(player: Dictionary, amount: int) -> Dictionary:
-	player["exp"] += amount
-	while player["exp"] >= player["exp_to_level"]:
-		player["exp"] -= player["exp_to_level"]
-		level_up(player)
-	return player
-
-func level_up(player: Dictionary) -> Dictionary:
-	player["level"] += 1
-	player["exp_to_level"] = int(player["exp_to_level"] * 1.1)
-	player["stat_points"] += 5
-	player["max_hp"] += 10
-	player["hp"] = player["max_hp"]
-	print("%s leveled up to %d!" % [player["name"], player["level"]])
-	return player
-
-func allocate_stat_point(player: Dictionary, stat: String, amount: int) -> Dictionary:
-	if player["stat_points"] < amount:
-		return player
+	match stat:
+		"hp":
+			character["max_hp"] += 5 * amount
+			character["hp"] = character["max_hp"]
+		"atk":
+			character["atk"] += 2 * amount
+		"def":
+			character["def"] += 2 * amount
+		"agi":
+			character["agi"] += 1 * amount
 	
-	if stat in player:
-		if stat == "hp" or stat == "max_hp":
-			player["max_hp"] += amount * 5
-			player["hp"] = player["max_hp"]
-	else:
-		player[stat] += amount
-	
-	player["stat_points"] -= amount
-	return player
-
-func add_fish_to_collection(player: Dictionary, fish_id: String) -> Dictionary:
-	if not fish_id in player["collected_fish"]:
-		player["collected_fish"].append(fish_id)
-		var bonus = _get_fish_bonus(player["collected_fish"].size())
-		if bonus:
-			player = _apply_bonus(player, bonus)
-			print("Fish bonus unlocked: %s" % bonus["name"])
-	return player
-
-func _get_fish_bonus(collected_count: int) -> Dictionary:
-	var bonuses = {
-		1: {"name": "First Catch", "stats": {"agi": 1}},
-		2: {"name": "Novice Fisher", "stats": {"hp": 1}},
-		5: {"name": "Skilled Angler", "stats": {"def": 1}},
-		10: {"name": "Master Fisher", "stats": {"atk": 2, "hp": 5}},
-		20: {"name": "Legend of the Sea", "stats": {"atk": 3, "def": 2, "agi": 2}},
-		50: {"name": "Mythical Fisher", "stats": {"atk": 5, "def": 5, "agi": 5, "max_hp": 20}}
-	}
-	return bonuses.get(collected_count, {})
-
-func _apply_bonus(player: Dictionary, bonus: Dictionary) -> Dictionary:
-	if bonus.has("stats"):
-		for stat in bonus["stats"]:
-			if stat == "max_hp":
-				player["max_hp"] += bonus["stats"][stat]
-				player["hp"] = player["max_hp"]
-		elif stat in player:
-			player[stat] += bonus["stats"][stat]
-	return player
+	character["stat_points"] -= amount
+	return character

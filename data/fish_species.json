@@ -1,15 +1,9 @@
 [
-  {"id": "goldfish", "name": "Goldfish", "rarity": "common", "value": 10, "size": "tiny", "element": "water"},
-  {"id": "guppy", "name": "Guppy", "rarity": "common", "value": 5, "size": "tiny", "element": "water"},
-  {"id": "tetra", "name": "Neon Tetra", "rarity": "common", "value": 8, "size": "tiny", "element": "water"},
-  {"id": "salmon", "name": "Salmon", "rarity": "common", "value": 15, "size": "small", "element": "water"},
-  {"id": "trout", "name": "Trout", "rarity": "common", "value": 12, "size": "small", "element": "water"},
-  {"id": "bass", "name": "Bass", "rarity": "uncommon", "value": 25, "size": "medium", "element": "water"},
-  {"id": "carp", "name": "Carp", "rarity": "uncommon", "value": 20, "size": "medium", "element": "water"},
-  {"id": "pike", "name": "Pike", "rarity": "uncommon", "value": 28, "size": "medium", "element": "water"},
-  {"id": "tuna", "name": "Tuna", "rarity": "rare", "value": 50, "size": "large", "element": "water"},
-  {"id": "shark", "name": "Shark", "rarity": "rare", "value": 75, "size": "large", "element": "water"},
-  {"id": "marlin", "name": "Marlin", "rarity": "epic", "value": 150, "size": "xlarge", "element": "water"},
-  {"id": "whale", "name": "Blue Whale", "rarity": "legendary", "value": 500, "size": "huge", "element": "water"},
-  {"id": "ancient_leviathan", "name": "Ancient Leviathan", "rarity": "mythic", "value": 5000, "size": "colossal", "element": "water"}
+  {"id": "sardine", "name": "Sardine", "rarity": "common", "value": 5, "size": "tiny"},
+  {"id": "goldfish", "name": "Goldfish", "rarity": "common", "value": 8, "size": "small"},
+  {"id": "salmon", "name": "Salmon", "rarity": "uncommon", "value": 25, "size": "medium"},
+  {"id": "tuna", "name": "Tuna", "rarity": "rare", "value": 75, "size": "large"},
+  {"id": "shark", "name": "Shark", "rarity": "epic", "value": 200, "size": "xlarge"},
+  {"id": "whale", "name": "Blue Whale", "rarity": "legendary", "value": 1000, "size": "huge"},
+  {"id": "poseidon", "name": "Poseidon", "rarity": "mythic", "value": 10000, "size": "colossal"}
 ]
