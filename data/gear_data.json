@@ -1,0 +1,38 @@
+{
+  "iron_pickaxe": {
+    "id": "iron_pickaxe",
+    "name": "Iron Pickaxe",
+    "type": "weapon",
+    "slot": "weapon",
+    "rarity": "common",
+    "value": 30,
+    "stats": {"atk": 3}
+  },
+  "iron_sword": {
+    "id": "iron_sword",
+    "name": "Iron Sword",
+    "type": "weapon",
+    "slot": "weapon",
+    "rarity": "common",
+    "value": 35,
+    "stats": {"atk": 4}
+  },
+  "iron_helmet": {
+    "id": "iron_helmet",
+    "name": "Iron Helmet",
+    "type": "armor",
+    "slot": "headgear",
+    "rarity": "common",
+    "value": 25,
+    "stats": {"def": 2}
+  },
+  "diamond_sword": {
+    "id": "diamond_sword",
+    "name": "Diamond Sword",
+    "type": "weapon",
+    "slot": "weapon",
+    "rarity": "legendary",
+    "value": 1000,
+    "stats": {"atk": 20, "def": 5}
+  }
+}

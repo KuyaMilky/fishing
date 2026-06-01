@@ -1,0 +1,29 @@
+{
+  "fireball": {
+    "id": "fireball",
+    "name": "Fireball",
+    "element": "fire",
+    "cooldown": 5,
+    "damage": 25,
+    "description": "Cast a fireball at enemies",
+    "stats": {"atk": 5}
+  },
+  "frostbolt": {
+    "id": "frostbolt",
+    "name": "Frostbolt",
+    "element": "ice",
+    "cooldown": 4,
+    "damage": 20,
+    "description": "Cast a freezing bolt",
+    "stats": {"def": 3}
+  },
+  "lightning": {
+    "id": "lightning",
+    "name": "Lightning Strike",
+    "element": "lightning",
+    "cooldown": 6,
+    "damage": 30,
+    "description": "Call down lightning",
+    "stats": {"atk": 8, "agi": 2}
+  }
+}

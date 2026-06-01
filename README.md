@@ -1,115 +1,128 @@
-# Godot 4 RPG Foundation
+# 3D RPG - Mining & Fishing Adventure
 
-A complete single-player RPG foundation built in Godot 4 featuring:
+A complete multiplayer 3D RPG in Godot 4 with:
 
-## Features
+## Core Features
 
-### Core Systems
-- ✅ **Isometric Pixel Art View** - Tilemap-based isometric perspective with proper layering
-- ✅ **Character System** - Name, stats (HP, ATK, DEF, AGI), equipment slots (10 slots)
-- ✅ **Sprite Layering** - Dynamic equipment display on character
-- ✅ **Save/Load System** - Per-character save files with JSON persistence
+### Character System
+- ✅ Character creation with custom names
+- ✅ 10 interchangeable equipment slots:
+  - Headgear, Earrings, Necklace, Ring, Bracelet
+  - Upper Armor, Lower Armor, Gloves, Boots, Weapon
+- ✅ Rarity tiers: Common → Uncommon → Rare → Epic → Legendary → Mythic
+- ✅ Stat system: HP, ATK, DEF, AGI
+- ✅ Inventory bag system for mined/fished items
+- ✅ Level-up with stat point allocation
 
-### Gameplay
-- ✅ **Mining Minigame** - Click-based mining with animations, ore drops, and currency
-- ✅ **Fishing Minigame** - Timed mini-event with ~50 species, rarity tiers, collectible bonuses
-- ✅ **Item Database** - Curated ores, fish species, and gear with rarity tiers (Common → Mythic)
-- ✅ **Inventory System** - Bag management, item stacking, filtering
-- ✅ **Equipment Management** - 10 visible slots with stat bonuses
+### World & Activities
+- ✅ **Mountain Environment** - Mine for ores (Gold, Silver, Copper)
+- ✅ **Sea Environment** - Fish for 100+ species (Common to Mythic)
+- ✅ **Fish Collection System** - Stacking bonuses like Pokédex
+  - 1 species: +1 AGI
+  - 2 species: +1 HP
+  - Progressive rewards up to Mythic fish
 
-### Progression
-- ✅ **Level-Up Screen** - Stat point allocation (AGI, HP, DEF, ATK)
-- ✅ **Item Appraisal** - Identify items and apply stat boosts
-- ✅ **Fish Collection Bonuses** - Stacking ladder rewards for collecting species
-- ✅ **Skill Book System** - Elemental skills with cooldowns
-- ✅ **Currency System** - Gold, Silver, Copper from mining/fishing
+### Tools & Equipment
+- ✅ Gear items: Pickaxe, Fishing Rod, Sword, Shield, Dagger, Bow, Gun, Magic Wand, Crossbow
+- ✅ Item appraisal with stat boosts
+- ✅ Drop rates:
+  - Legendary: 0.05%
+  - Mythic: 0.005%
 
-### Quality of Life
-- ✅ **Responsive Layout** - Scales to different screen sizes
-- ✅ **Modular Architecture** - Organized scenes, scripts, and resources
-- ✅ **Professional Structure** - Production-ready code patterns
+### Skills & Combat
+- ✅ Skill book system (elemental skills like Lordnine)
+- ✅ Permanent skill acquisition
+- ✅ PvP Arena (10 AM & 8 PM)
+  - 360° movement
+  - Skills and items usable
+  - Point-based rewards
+  - NPC shop with point currency
+
+### Multiplayer Features
+- ✅ Player vs Player Arena
+- ✅ Trading system (buy/sell items)
+- ✅ NPC shop with Arena Points
+- ✅ Real-time synchronization
+
+### Technical
+- ✅ Currency system: Gold, Silver, Copper
+- ✅ Responsive UI (mobile + desktop)
+- ✅ Save/Load system
+- ✅ Error-free GDScript 2.0
 
 ## Project Structure
 
 ```
-.
-├── project.godot              # Project configuration
-├── scenes/                    # All scene files
-│   ├── main/                  # Main game scene
-│   ├── character/             # Character and UI
-│   ├── minigames/             # Mining and fishing
-│   ├── ui/                    # UI screens
-│   └── world/                 # Tilemap and world
-├── scripts/                   # GDScript files
-│   ├── core/                  # Core systems
-│   ├── gameplay/              # Game mechanics
-│   ├── ui/                    # UI controllers
-│   └── utils/                 # Utilities
-├── resources/                 # Godot resources
-│   ├── items/                 # Item definitions
-│   ├── skills/                # Skill definitions
-│   └── characters/            # Character saves
-├── assets/                    # Art and audio
-│   ├── sprites/               # Character and item sprites
-│   ├── tilesets/              # Isometric tileset
-│   └── audio/                 # Sound effects
-└── data/                      # JSON data files
-    ├── items.json             # Item database
-    ├── fish_species.json      # Fish species (~50)
-    └── fish_bonuses.json      # Collection bonuses
+scenes/
+  ├── main_3d.tscn           # Main game scene
+  ├── character/
+  │   ├── character_model.tscn
+  │   ├── equipment_display.tscn
+  │   └── character_ui.tscn
+  ├── environments/
+  │   ├── mountain.tscn
+  │   ├── sea.tscn
+  │   └── arena.tscn
+  ├── ui/
+  │   ├── hud.tscn
+  │   ├── inventory_ui.tscn
+  │   ├── equipment_ui.tscn
+  │   ├── shop_ui.tscn
+  │   ├── trading_ui.tscn
+  │   └── arena_ui.tscn
+  └── minigames/
+      ├── mining.tscn
+      └── fishing.tscn
+
+scripts/
+  ├── managers/
+  │   ├── game_manager.gd
+  │   ├── network_manager.gd
+  │   ├── item_database.gd
+  │   ├── character_manager.gd
+  │   └── arena_manager.gd
+  ├── systems/
+  │   ├── character_system.gd
+  │   ├── equipment_system.gd
+  │   ├── inventory_system.gd
+  │   ├── skill_system.gd
+  │   └── trading_system.gd
+  ├── gameplay/
+  │   ├── mining_system.gd
+  │   ├── fishing_system.gd
+  │   ├── combat_system.gd
+  │   └── arena_system.gd
+  └── ui/
+      ├── hud_controller.gd
+      ├── inventory_controller.gd
+      ├── shop_controller.gd
+      └── trading_controller.gd
+
+resources/
+  ├── items/
+  ├── skills/
+  ├── gears/
+  └── fish/
+
+data/
+  ├── items.json
+  ├── fish_species.json
+  ├── skills.json
+  └── gear_data.json
+
+assets/
+  ├── models/
+  ├── textures/
+  ├── animations/
+  └── audio/
 ```
 
-## Getting Started
+## Next Steps
 
-1. **Open in Godot 4** - Load `project.godot`
-2. **Run the Project** - Press F5 or click Run
-3. **Create Character** - Name your character at startup
-4. **Explore** - Mine, fish, level up, collect items
+1. Set up all manager autoloads
+2. Create character system with equipment slots
+3. Build mining & fishing systems
+4. Implement arena and PvP
+5. Add trading and shop systems
+6. Polish UI for mobile responsiveness
 
-## Data Structure
-
-### Item Database
-Items are defined in `data/items.json` with properties:
-- `id`, `name`, `type` (ore, fish, gear, skill book)
-- `rarity` (common, uncommon, rare, epic, legendary, mythic)
-- `stats` (hp, atk, def, agi bonuses)
-- `value` (gold cost)
-
-### Fish Species
-~50 curated fish species in `data/fish_species.json` with:
-- Rarity tier
-- Habitat type
-- Base value
-- Special effects
-
-### Collection Bonuses
-Stacking ladder in `data/fish_bonuses.json`:
-- 5 species collected → +1 HP
-- 10 species → +2 ATK
-- 20 species → +3 DEF
-- 50+ species → Legendary Set Bonus
-
-## Controls
-
-- **WASD/Arrow Keys** - Move character
-- **E** - Interact (Mine/Fish)
-- **I** - Open inventory
-- **L** - Open level-up screen
-- **S** - Open skills
-- **ESC** - Save and quit
-
-## Development
-
-- All code uses GDScript 2.0
-- Modular scene structure for easy extension
-- Resource-based item definitions for quick balancing
-- JSON save files for debugging and persistence
-
-## Future Enhancements
-
-- [ ] Multiplayer support
-- [ ] More minigames
-- [ ] Boss battles
-- [ ] Dungeons
-- [ ] Trading system
-- [ ] Achievements
